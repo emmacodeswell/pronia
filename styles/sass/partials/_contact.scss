@@ -1,0 +1,111 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+// Contact page
+
+#contactPage {
+    h2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url(../assets/contact-header.jpg) no-repeat;
+        background-size: cover;
+        height: 18rem;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 2rem;
+        color: $darkGrey;
+        margin: 0;
+    }
+    
+    .contact {
+        display: flex;
+        box-shadow: $shadowSize $grey;
+        margin: 6rem 0;
+
+        @include tablet {
+            flex-flow: column;
+        }
+        
+        .info {
+            flex: 0 0 auto;
+            color: $white;
+            background-image: url(../assets/contact.jpg);
+            background-repeat: no-repeat;
+            background-position: 0 -23px;
+            background-color: $green; 
+            width: $oneThird;
+            padding: $gap/2 $gap;
+            
+            @include tablet {
+                width: auto;
+                flex-grow: 1;
+                background-image: none;
+            }
+    
+            h3 {
+                font-size: 2rem;
+                font-weight: 500;
+            }
+    
+            p {
+                line-height: 1.5;
+            }
+    
+            address {
+                font-size: 1.25rem;
+                line-height: 2;
+            }
+        }
+    
+        form {
+            display: flex;
+            flex-flow: row wrap;
+            align-items: flex-start;
+            column-gap: $gap;
+            row-gap: $gap;
+            padding: $gap;
+            text-transform: capitalize;
+    
+            input,
+            textarea {
+                border: none;
+                border-bottom: 2px solid $grey;
+                line-height: 2;
+                box-sizing: content-box;
+    
+                &::placeholder {
+                    color: $grey;
+                    font-style: italic;
+                }
+    
+                &:focus {
+                    border-bottom: 2px solid $leafGreen;
+    
+                    &::placeholder {
+                        color: $leafGreen;
+                    }
+                }
+            }
+    
+            input {
+                flex: 1 1 40%;
+    
+                @include tablet {
+                    flex-basis: 100%;
+                }
+            }
+    
+            textarea {
+                flex: 1 1 100%;
+                resize: none;
+                min-height: 2rem;
+                max-height: 10rem;
+            }
+    
+            button {
+                margin-left: auto;
+            }
+        }
+    }
+}

@@ -1,0 +1,400 @@
+@use "./partials/variables" as *;
+@use "./partials/mixins" as *;
+@use "./partials/setup";
+@use "./partials/common";
+@use "./partials/contact";
+@use "./partials/pop-up";
+
+// Styling .promo bar
+.promo {
+    display: flex;
+    background-color: $green;
+    color: $white;
+    text-transform: uppercase;
+    font-weight: 400;
+
+    @include mobile {
+        justify-content: center;
+        text-align: center;
+        font-size: 0.8rem;
+
+        p {
+            width: 100%;
+        }
+    }
+
+    .currency {
+        display: flex;
+        align-items: center;
+
+        @include mobile {
+            display: none;
+        }
+
+        a {
+            color: $white;
+            padding-left: 1rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+    }
+}
+
+// Styling Nav //
+nav {
+    .checkout {
+        height: 25px;
+        width: 25px;
+        margin-left: 86px;
+
+        @include mobile {
+            margin-left: auto;
+        }
+    }
+
+    ul {
+        text-transform: uppercase;
+
+        @include mobile {
+            order: 3;
+        }
+
+        li {
+            padding: 1rem;
+
+            @include mobile {
+                display: none;
+            }
+
+            a {
+                color: $darkGrey;
+            }
+        }
+    }
+}
+
+#mobileMenu {
+    display: none;
+    padding-right: 0;
+
+    @include mobile {
+        display: block;
+    }
+}
+
+.logo {
+    display: block;
+}
+
+// Styling Header
+.hero {
+    h2 {
+        font-size: 3rem;
+        text-transform: uppercase;
+        font-weight: 300;
+
+        strong {
+            display: block;
+            font-size: 5rem;
+            font-weight: 400;
+            margin: 1rem 0;
+        }
+    }
+
+    p {
+        font-size: 1rem;
+        font-weight: 400;
+        text-transform: capitalize;
+    }
+}
+
+// Styling .benefits
+.blurb {
+    display: flex;
+    padding: 1rem 1.5rem;
+    border: 2px dotted $green;
+    border-radius: 6px;
+
+    @include mobile {
+        padding: 0;
+        border: none;
+    }
+
+    img {
+        width: 3rem;
+        margin-right: 1rem;
+    }
+
+    h2,
+    p {
+        margin: 0.5rem 0;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+        font-weight: 700;
+    }
+
+}
+
+// Styling .gallery
+.gallery {
+    .options {
+        display: flex;
+        justify-content: center;
+        margin: 1rem 0;
+
+        button {
+            margin: 1.5rem 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: transparent;
+            border: 2px solid $lightGrey;
+            border-radius: 4px;
+
+            @include mobile {
+                margin: 1.5rem 0.25rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            @include hover {
+                border: 2px dotted $green;
+            }
+        }
+    }
+}
+
+// Styling .products section
+.products {
+    display: flex;
+    flex-flow: row wrap;
+    column-gap: $gap;
+    row-gap: $gap;
+
+    @include tablet {
+        justify-content: center;
+    }
+
+    .plant {
+        flex: 1 0 20%;
+
+        @include tablet {
+            flex: 0 0 30%;
+            text-align: center;
+        }
+
+        @include mobile {
+            flex-basis: 100%;
+        }
+
+        > img {
+            width: 100%;
+
+            @include hover;
+
+            @include mobile {
+                padding: 0 25%;
+            }
+        }
+
+        button {
+            background: transparent;
+            border: none;
+            box-shadow: $shadowSize rgba(0, 0, 0, 0.2);
+
+            img {
+                padding-top: 4px;
+                padding-right: 4px;
+                height: 1.75rem;
+                width: 1.75rem;
+            }
+
+            @include hover {
+                box-shadow: $shadowSize rgba(22, 59, 12, 0.6); 
+            }
+        }
+    }
+}
+
+// Styling .collections sections
+.collections {
+
+    @include tablet {
+        flex-flow: row wrap;
+
+    }
+
+    .b1 { background-image: url(../assets/b1.jpeg); }
+    .b2 { background-image: url(../assets/b2.jpeg); }
+    .b3 { background-image: url(../assets/b3.jpeg); }
+    .b4 { background-image: url(../assets/b4.jpeg); }
+
+    h3 {
+        font-size: 2.5rem;
+        font-weight: 500;
+        margin: 1rem 0;
+
+        @include mobile {
+            font-size: 2rem;
+        }
+    }
+
+    > * {
+        height: 300px;
+        padding: $gap ($gap * 2);
+
+        @include tablet {
+            flex-grow: 1;
+        }
+
+        @include mobile {
+            padding: ($gap / 2) $gap !important;
+            text-align: center;
+
+            .cta {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    }
+
+    .twoThirds {
+        padding-right: 385px;
+
+        @include mobile {
+            background-position: 0 -50%;
+        }
+    }
+
+    .centered {
+        text-align: center;
+
+        .cta {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
+// Styling .blog section
+.blog {
+    > p {
+        font-weight: 500;
+        text-align: center;
+        padding: 0 25%;
+        margin: 1rem 0 3rem;
+
+        @include tablet {
+            padding: 0 10%;
+        }
+    }
+
+    article {
+        color: $darkGrey;
+        background: $faintBlue;
+        border-radius: 6px;
+        padding: 1rem 2rem;
+
+        @include tablet {
+            display: flex;
+            align-items: flex-start;
+            column-gap: $gap;
+        }
+
+        @include mobile {
+            flex-flow: column;
+            padding: 0.5rem 1rem;
+
+            .greenInfo {
+                font-size: 1rem;
+            }
+        }
+
+        img {
+            display: block;
+            margin: 2rem 0;
+            max-width: 100%;
+
+            @include mobile {
+                margin: 1rem 0;
+            }
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+    }
+}
+
+// Styling footer
+footer {
+    background: url(../assets/footer.jpg) no-repeat bottom;
+    background-size: cover;
+    padding-top: 4rem;
+
+    @include tablet {
+        padding-top: 1rem;
+    }
+
+    a {
+        color: $black;
+    }
+
+    ul {
+        line-height: 2;
+    }
+    
+    .wrapper {
+        display: flex;
+        align-items: baseline;
+        flex-flow: row wrap;
+        column-gap: 5rem;
+        row-gap: $gap;
+
+        @include tablet {
+            justify-content: center;
+
+            address {
+                text-align: center;
+            }
+        }
+
+        @include mobile {
+            flex-flow: column;
+            text-align: center;
+            align-items: center;
+        }
+
+        .socials {
+            flex: 1 1 0;
+
+            @include tablet {
+                flex: 0 0 80%;
+                text-align: center;
+            }
+
+            i {
+                font-size: 1.5rem;
+                margin-right: 1rem;
+            }
+        }
+    }
+
+    .phone {
+        font-size: 2rem;
+        line-height: 1;
+        margin: 1rem 0;
+    }
+
+    .copyright {
+        color: $leafGreen;
+        border-top: currentColor solid 1px;
+        width: 100%;
+        text-align: center;
+        padding-top: 1rem;
+
+        @include tablet {
+            margin-top: 0;
+        }
+    }
+}

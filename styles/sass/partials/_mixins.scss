@@ -1,0 +1,42 @@
+@use "./variables" as *;
+
+// Mixins
+
+// Green text styling mixin
+@mixin greenInfo {
+    font-size: 1.2rem;
+    color: $green;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+// Flexy and space-between mixin
+@mixin spaceBetween {
+    display: flex;
+    justify-content: space-between;
+}
+
+// Hover pointer
+@mixin hover {
+    &:hover {
+        cursor: pointer;
+        @content;
+    }
+}
+
+// Media queries mixins
+
+// Anything smaller than desktop
+@mixin tablet {
+    @media (max-width: ($desktop - 1px)) {
+        @content;
+    }
+}
+
+// Anythng smaller than tablet
+@mixin mobile {
+    @media (max-width: ($tablet - 1px)) {
+        @content;
+    }
+}
+  

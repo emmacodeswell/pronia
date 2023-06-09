@@ -1,0 +1,23 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+#pop-up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    > div {
+        background-color: white;
+        border-radius: $gap;
+        padding: $gap;
+        min-width: 50%;
+        text-align: center;
+    }
+}
+

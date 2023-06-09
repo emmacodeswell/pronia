@@ -1,0 +1,192 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+// Common styles //
+html {
+    font-size: 16px;
+    font-family: $mainFont;
+    line-height: 1.15;
+    background-color: $white;
+    color: $black;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+        list-style: none;
+    }
+}
+
+a {
+    text-decoration: none;
+
+    &:hover {
+        color: $leafGreen;
+    }
+}
+
+button {
+    font-family: $mainFont;
+    border: none;
+}
+
+img {
+    flex: 0 0 auto;
+    align-self: center;
+}
+
+.altBackground {
+    background-color: $peach;
+}
+
+h1, h2, h3 {
+    margin: 1rem 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+p {
+    line-height: 2;
+}
+
+section {
+    margin: 4rem 0;
+
+    @include mobile {
+        margin: 3rem 0;
+    }
+}
+
+h2.line {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    
+    @include mobile {
+        font-size: 1.75rem;
+    }
+
+    // === From: https://stackoverflow.com/a/14731123
+    overflow: hidden;
+
+    &::before,
+    &::after {
+        background-color: $green;
+        content: "";
+        display: inline-block;
+        height: 2px;
+        position: relative;
+        vertical-align: middle;
+        width: 5%;
+    }
+    
+    &::before {
+        right: 0.5em;
+        margin-left: -50%;
+    }
+    
+    &::after {
+        left: 0.5em;
+        margin-right: -50%;
+    }
+}
+
+p.greenInfo {
+    @include greenInfo;
+
+    time {
+        margin-left: 1rem;
+    }
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: $contentWidth;
+
+    @include tablet {
+        width: $tablet - $gap;
+    }
+
+    @include mobile {
+        width: $mobile - $gap/2;
+    }
+}
+
+.flexContainer {
+    @include spaceBetween;
+    padding: 3rem 0;
+    align-items: center;
+
+    @include mobile {
+        flex-flow: column;
+    }
+
+    img {
+        max-width: 50%;
+
+        @include mobile {
+            max-width: 100%;
+            order: -1;
+        }
+    }
+}
+
+.banner {
+    @include spaceBetween;
+    align-items: center;
+}
+
+.thirds {
+    @include spaceBetween;
+    width: $contentWidth;
+    flex-flow: row wrap;
+    row-gap: $gap;
+    column-gap: $gap;
+
+    @include tablet {
+        align-items: center;
+        justify-content: center;
+        width: $tablet - $gap;
+    }
+
+    @include mobile {
+        width: $mobile - $gap/2;
+    }
+
+    > * {
+        width: $oneThird;
+
+        @include tablet {
+            width: auto;
+        }
+    }
+
+    > .twoThirds {
+        width: $twoThirds;
+
+        @include tablet {
+            width: 100%;
+        }
+
+    }
+}
+
+.cta {
+    display: block;
+    text-transform: uppercase;
+    color: $white;
+    background-color: $green;
+    border-radius: $gap;
+    margin: 2rem 0;
+    padding: 1rem 2rem;
+    white-space: nowrap;
+    width: min-content;
+
+    @include hover {
+        color: $white;
+        background-color: $darkGreen;
+    }
+}
