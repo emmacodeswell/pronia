@@ -1,77 +1,77 @@
 
 {
     "plants": {
-            "p1": {
-                "name": "American Marigold",
-                "id": "1",
-                "category": "featured",
-                "price": "23.45",
-                "src": "./assets/p2.jpeg",
-                "alt": "A Marigold plant",
-                "inCart": "false"
-            },
-            "p2": {
-                "name": "Black Eyed Susan",
-                "id": "2",
-                "category": "featured",
-                "price": "25.45",
-                "src": "./assets/p1.jpeg",
-                "alt": "A Black Eyed Susan plant",
-                "inCart": "false"
-            },
-            "p3": {
-                "name": "Bleeding Heart",
-                "id": "3",
-                "category": "featured",
-                "price": "30.45",
-                "src": "./assets/p3.jpeg",
-                "alt": "A Bleeding Heart plant",
-                "inCart": "false"
-            },
-            "p4": {
-                "name": "Bloody Cranesbill",
-                "id": "4",
-                "category": "bestseller",
-                "price": "45.00",
-                "src": "./assets/p4.jpeg",
-                "alt": "A Bloody Cranesbill plant",
-                "inCart": "false"
-            },
-            "p5": {
-                "name": "Butterfly Weed",
-                "id": "5",
-                "category": "bestseller",
-                "price": "50.45",
-                "src": "./assets/p5.jpeg",
-                "alt": "A Butterfly Weed plant",
-                "inCart": "false"
-            },
-            "p6": {
-                "name": "Common Yarrow",
-                "id": "6",
-                "category": "bestseller",
-                "price": "65.00",
-                "src": "./assets/p6.jpeg",
-                "alt": "A Common Yarrow ",
-                "inCart": "false"
-            },
-            "p7": {
-                "name": "Doublefile Viburnum",
-                "id": "7",
-                "category": "latest",
-                "price": "67.45",
-                "src": "./assets/p7.jpeg",
-                "alt": "A Doublefile Viburnum plant",
-                "inCart": "false"
-            },
-            "p8": {
-                "name": "Feather Reed Grass",
-                "id": "8",
-                "category": "latest",
-                "price": "20.00",
-                "src": "./assets/p8.jpeg",
-                "alt": "A Feather Reed Grass plant",
-                "inCart": "false"
-            }
-    }   
+        "p1": {
+            "name": "American Marigold",
+            "id": "1",
+            "category": "featured",
+            "price": 23.45,
+            "src": "./assets/p2.jpeg",
+            "alt": "A Marigold plant",
+            "inCart": 0
+        },
+        "p2": {
+            "name": "Black Eyed Susan",
+            "id": "2",
+            "category": "featured",
+            "price": 25.45,
+            "src": "./assets/p1.jpeg",
+            "alt": "A Black Eyed Susan plant",
+            "inCart": 0
+        },
+        "p3": {
+            "name": "Bleeding Heart",
+            "id": "3",
+            "category": "featured",
+            "price": 30.45,
+            "src": "./assets/p3.jpeg",
+            "alt": "A Bleeding Heart plant",
+            "inCart": 0
+        },
+        "p4": {
+            "name": "Bloody Cranesbill",
+            "id": "4",
+            "category": "bestseller",
+            "price": 45.00,
+            "src": "./assets/p4.jpeg",
+            "alt": "A Bloody Cranesbill plant",
+            "inCart": 0
+        },
+        "p5": {
+            "name": "Butterfly Weed",
+            "id": "5",
+            "category": "bestseller",
+            "price": 50.45,
+            "src": "./assets/p5.jpeg",
+            "alt": "A Butterfly Weed plant",
+            "inCart": 0
+        },
+        "p6": {
+            "name": "Common Yarrow",
+            "id": "6",
+            "category": "bestseller",
+            "price": 65.00,
+            "src": "./assets/p6.jpeg",
+            "alt": "A Common Yarrow ",
+            "inCart": 0
+        },
+        "p7": {
+            "name": "Doublefile Viburnum",
+            "id": "7",
+            "category": "latest",
+            "price": 67.45,
+            "src": "./assets/p7.jpeg",
+            "alt": "A Doublefile Viburnum plant",
+            "inCart": 0
+        },
+        "p8": {
+            "name": "Feather Reed Grass",
+            "id": "8",
+            "category": "latest",
+            "price": 20.00,
+            "src": "./assets/p8.jpeg",
+            "alt": "A Feather Reed Grass plant",
+            "inCart": 0
+        }
+    }
 }
