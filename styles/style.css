@@ -576,6 +576,46 @@ p.greenInfo time {
   text-align: center;
 }
 
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.checkout {
+  max-width: 20%;
+  height: auto;
+}
+
+.menu {
+  position: absolute;
+  top: 16%;
+  left: 69%;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  background-color: lightgreen;
+  width: auto;
+  max-width: 72px;
+  height: 70px;
+}
+
+.menu.open {
+  display: block;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
 .promo {
   display: flex;
   background-color: #ABD373;

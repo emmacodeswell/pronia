@@ -5,6 +5,51 @@
 @use "./partials/contact";
 @use "./partials/pop-up";
 
+
+// look at this! its my hamburger something something
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.checkout {
+    max-width: 20%;
+    height: auto;
+}
+
+.menu {
+    position: absolute;
+    top: 16%;
+    left: 69%;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    background-color: lightgreen;
+    width: auto;
+    max-width: 72px;
+    height: 70px;
+}
+
+.menu.open {
+    display: block;
+    animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    to {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
 // Styling .promo bar
 .promo {
     display: flex;
@@ -186,7 +231,7 @@ nav {
             flex-basis: 100%;
         }
 
-        > img {
+        >img {
             width: 100%;
 
             @include hover;
@@ -209,7 +254,7 @@ nav {
             }
 
             @include hover {
-                box-shadow: $shadowSize rgba(22, 59, 12, 0.6); 
+                box-shadow: $shadowSize rgba(22, 59, 12, 0.6);
             }
         }
     }
@@ -223,10 +268,21 @@ nav {
 
     }
 
-    .b1 { background-image: url(../assets/b1.jpeg); }
-    .b2 { background-image: url(../assets/b2.jpeg); }
-    .b3 { background-image: url(../assets/b3.jpeg); }
-    .b4 { background-image: url(../assets/b4.jpeg); }
+    .b1 {
+        background-image: url(../assets/b1.jpeg);
+    }
+
+    .b2 {
+        background-image: url(../assets/b2.jpeg);
+    }
+
+    .b3 {
+        background-image: url(../assets/b3.jpeg);
+    }
+
+    .b4 {
+        background-image: url(../assets/b4.jpeg);
+    }
 
     h3 {
         font-size: 2.5rem;
@@ -238,34 +294,18 @@ nav {
         }
     }
 
-    > * {
+    >* {
         height: 300px;
-        padding: $gap ($gap * 2);
+        padding: $gap (
+            $gap * 2
+        );
 
-        @include tablet {
-            flex-grow: 1;
-        }
-
-        @include mobile {
-            padding: ($gap / 2) $gap !important;
-            text-align: center;
-
-            .cta {
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
+    @include tablet {
+        flex-grow: 1;
     }
 
-    .twoThirds {
-        padding-right: 385px;
-
-        @include mobile {
-            background-position: 0 -50%;
-        }
-    }
-
-    .centered {
+    @include mobile {
+        padding: ($gap / 2) $gap !important;
         text-align: center;
 
         .cta {
@@ -275,9 +315,27 @@ nav {
     }
 }
 
+.twoThirds {
+    padding-right: 385px;
+
+    @include mobile {
+        background-position: 0 -50%;
+    }
+}
+
+.centered {
+    text-align: center;
+
+    .cta {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+}
+
 // Styling .blog section
 .blog {
-    > p {
+    >p {
         font-weight: 500;
         text-align: center;
         padding: 0 25%;
@@ -343,7 +401,7 @@ footer {
     ul {
         line-height: 2;
     }
-    
+
     .wrapper {
         display: flex;
         align-items: baseline;
