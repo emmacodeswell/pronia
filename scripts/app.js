@@ -1,10 +1,6 @@
-import { app } from "./firebase.js";
-import {
-  getDatabase,
-  ref,
-  onValue,
-  update,
-} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+import { app } from './firebase.js'
+import { getDatabase, ref, onValue, update } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js"
+import { openPopUp } from './pop-up.js'
 
 // == Setup Code ==
 const database = getDatabase(app);

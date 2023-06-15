@@ -4,7 +4,7 @@
 // Create a function that does something when the user clicks on the image
 // The function will create pop-up elements when event is triggered and append them to the doc
     
-const openPopUp = ((event) => {
+export const openPopUp = ((event) => {
   const smolImage = event.target
   const parent = smolImage.parentNode
   // create wrapper element (darkens screen around pop-up box)
@@ -28,10 +28,4 @@ const openPopUp = ((event) => {
 const closePopUp = ((event) => {
   const wrapper = event.target
   document.body.removeChild(wrapper)
-})
-
-// Finds all images we want to be clickable
-const images = document.querySelectorAll('.plant > img') 
-images.forEach((image) => {
-   image.addEventListener('click', openPopUp)
 })
