@@ -56,6 +56,10 @@ const displayPlants = (arrayOfPlants, node) => {
     const div = document.createElement("div");
     div.classList.add("plant");
     const img = document.createElement("img");
+
+    // Add event listener to img and call openPopUp function
+    img.addEventListener('click', openPopUp)
+
     const h3 = document.createElement("h3");
     const p = document.createElement("p");
     p.classList.add("greenInfo");
