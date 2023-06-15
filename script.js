@@ -5,3 +5,4 @@ document.addEventListener("DOMContentLoaded", function () {
     hamburger.addEventListener("click", function () {
         menu.classList.toggle("open");
     });
+});  
