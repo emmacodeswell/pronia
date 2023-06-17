@@ -13,9 +13,24 @@ export const openPopUp = ((event) => {
   const title = parent.querySelector('h3').cloneNode(true)
   const price = parent.querySelector('p').cloneNode(true)
   const bigImage = parent.querySelector('img').cloneNode()
-  // give the wrapper id
+  const closeButton = document.createElement('button')
+
+
+  // give the wrapper an id
   wrapper.id = 'pop-up'
-  wrapper.addEventListener('click', closePopUp)
+  // give closeButton a class 
+  closeButton.classList.add('close');
+  closeButton.textContent = "Close"
+
+  // create closePopUp function inside scope because wrapper is defined here
+  const closePopUp = ((event) => {
+    document.body.removeChild(wrapper)
+  })
+  // add an event listener to closeButton
+  closeButton.addEventListener('click', closePopUp)
+
+  // append elements to body of HTML
+  wrapper.appendChild(closeButton)
   wrapper.appendChild(content)
   content.appendChild(title)
   content.appendChild(bigImage)
@@ -23,9 +38,4 @@ export const openPopUp = ((event) => {
   // append wrapper to body of html
   document.body.appendChild(wrapper)
   // make click handler for exit button, gets rid wrapper from doc 
-})
-
-const closePopUp = ((event) => {
-  const wrapper = event.target
-  document.body.removeChild(wrapper)
 })
