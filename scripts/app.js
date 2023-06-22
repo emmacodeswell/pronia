@@ -8,6 +8,7 @@ const dbRef = ref(database);
 
 // == GLOBAL SCOPE ==
 const products = document.querySelector(".products");
+const hamburger = document.querySelector('.hamburger')
 let cart = [];
 let total = 0;
 
@@ -35,17 +36,33 @@ onValue(dbRef, (data) => {
     updateCart()
 
     // products in cart / inCart === true
-    const addToCart = allProducts.filter((plant) => {
-      return plant.inCart === true;
-    });
-
+    const itemsInCart = allProducts.filter(plant => plant.inCart)
+    
     // TODO: write code here that will make inCart === true display in the cart pop-out feature
-    displayPlants(allProducts, products);
-    // displayPlants(addToCart, cart)
+    displayPlants(allProducts, products)
+    displayCart(itemsInCart, hamburger)
+
   } else {
     console.log("No data to report!");
   }
 });
+
+/**
+ * Displays a notification on top of image, at given node
+ * @param node - the node inside which the notification gets rendered
+ * @param text - what text gets rendered
+ */
+const displayNotification = (node, text) => {
+  const className = 'notification'
+  let notification = node.querySelector(`.${className}`)
+
+  if (!notification) {
+    notification = document.createElement('p')
+    notification.classList.add(className)
+    notification.textContent = text
+    node.append(notification)
+  }
+}
 
 // Display plant photos and make add to cart button
 const displayPlants = (arrayOfPlants, node) => {
@@ -72,6 +89,7 @@ const displayPlants = (arrayOfPlants, node) => {
     // Listen for adding to cart
     button.addEventListener('click', function(event){
       updateDatabase(event, plant.inCart+1)
+      displayNotification(div, "Smack my ass like a drum")
     })
 
     h3.textContent = plant.name;
@@ -178,3 +196,27 @@ function checkout() {
 
 const checkoutButton = document.getElementById("checkout-button");
 checkoutButton.addEventListener("click", checkout);
+
+const displayCart = (itemsInCart, node) => {
+  const itemsIconId = 'numItems'
+  let itemsIcon = node.querySelector(`#${itemsIconId}`)
+  // shorthand for a function with one argument that returns a value, tells us which items are in our cart
+  const numItemsInCart = itemsInCart.reduce((sum, item) => {
+    return sum + item.inCart
+  }, 0)
+
+  // conditional statement for when there is no item icon AND items in cart
+  if (!itemsIcon && numItemsInCart) {
+    itemsIcon = document.createElement('span')
+    itemsIcon.id = itemsIconId
+    itemsIcon.textContent = numItemsInCart
+    node.append(itemsIcon)
+  }
+  if (itemsIcon && numItemsInCart) {
+    itemsIcon.textContent = numItemsInCart
+  }
+  // conditional statement for when there are no items in cart and num icon
+  if (!numItemsInCart && itemsIcon) {
+    node.removeChild(itemsIcon)
+  }
+}
