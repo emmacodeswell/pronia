@@ -49,10 +49,11 @@ onValue(dbRef, (data) => {
 
 /**
  * Displays a notification on top of image, at given node
- * @param node - the node inside which the notification gets rendered
+ * @param selector - the product under which displayNotification will render
  * @param text - what text gets rendered
  */
-const displayNotification = (node, text) => {
+const displayNotification = (selector, text) => {
+  const node = document.querySelector(selector)
   const className = 'notification'
   let notification = node.querySelector(`.${className}`)
 
@@ -61,6 +62,10 @@ const displayNotification = (node, text) => {
     notification.classList.add(className)
     notification.textContent = text
     node.append(notification)
+
+  setTimeout(() => {
+    notification.remove();
+    }, 3000)
   }
 }
 
@@ -72,6 +77,8 @@ const displayPlants = (arrayOfPlants, node) => {
   arrayOfPlants.forEach((plant) => {
     const div = document.createElement("div");
     div.classList.add("plant");
+    const uniqueClass = `plantId${plant.id}`
+    div.classList.add(uniqueClass)
     const img = document.createElement("img");
 
     // Add event listener to img and call openPopUp function
@@ -89,7 +96,7 @@ const displayPlants = (arrayOfPlants, node) => {
     // Listen for adding to cart
     button.addEventListener('click', function(event){
       updateDatabase(event, plant.inCart+1)
-      displayNotification(div, "Smack my ass like a drum")
+      displayNotification(`.${uniqueClass}`, `Product successfully added to your cart.`)
     })
 
     h3.textContent = plant.name;
