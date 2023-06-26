@@ -129,9 +129,66 @@ function updateCart() {
 
     let span = document.createElement("span");
     span.textContent = `${item.name} - $${item.price} x ${item.quantity} = $${itemTotal}`;
-    li.appendChild(span);
 
+    // subtract button
+    let subtractBtn = document.createElement("button");
+    subtractBtn.classList.add("subtract-btn");
+
+    // subtract button icon
+    let subtractBtnImg = document.createElement("img");
+    subtractBtnImg.src = "./assets/icons/minus-solid.svg";
+    subtractBtnImg.alt = "subtract-item";
+    subtractBtnImg.style.width = "12px";
+    subtractBtnImg.style.height = "12px";
+    subtractBtn.style.marginLeft = "8px"
+
+    subtractBtn.appendChild(subtractBtnImg);
+
+    subtractBtn.addEventListener("click", function (event) {
+      event.stopPropagation();
+      subtractItem(item.name);
+    });
+
+    // addition button
+    let additionBtn = document.createElement("button");
+    additionBtn.classList.add("addition-btn");
+
+    // addition button icon
+    let additionBtnImg = document.createElement("img");
+    additionBtnImg.src = "./assets/icons/plus-solid.svg";
+    additionBtnImg.alt = "add-item";
+    additionBtnImg.style.width = "12px";
+    additionBtnImg.style.height = "12px";
+    additionBtn.style.marginLeft = "8px"
+
+
+    additionBtn.appendChild(additionBtnImg);
+
+    additionBtn.addEventListener("click", function (event) {
+      event.stopPropagation();
+      addItem(item.name, item.price);
+    });
+
+    li.appendChild(span);
+    li.appendChild(subtractBtn);
+    li.appendChild(additionBtn);
     cartItems.appendChild(li);
+
+  }
+
+  function subtractItem(name) {
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].name === name) {
+        cart[i].quantity--;
+
+        if (cart[i].quantity === 0) {
+          cart.splice(i, 1);
+        }
+
+        updateCart();
+        return;
+      }
+    }
   }
 
   document.getElementById("cart-total").textContent = total;
