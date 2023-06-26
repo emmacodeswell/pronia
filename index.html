@@ -2,25 +2,22 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pronia</title>
     <link rel="stylesheet" href="./styles/style.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
     <script src="https://kit.fontawesome.com/08eb1acd37.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body>
-    <script type="module" src="./scripts/pop-up.js">
-    </script>
-    <script type="module" src="./scripts/app.js">
-    </script>
+    <script type="module" src="./scripts/pop-up.js"></script>
+    <script type="module" src="./scripts/app.js"></script>
     <header>
         <div class="promo">
             <div class="wrapper banner">
@@ -32,6 +29,7 @@
             </div>
         </div>
 
+        
         <nav class="wrapper banner">
             <h1><img class="logo" src="./assets/logo.png" alt="Pronia logo" /></h1>
             <ul class="banner">
@@ -40,27 +38,26 @@
                 <li><a href="./contact.html">Contact us</a></li>
                 <li id="mobileMenu"><a href="#">Menu</a></li>
             </ul>
-            <!-- dont worry about this one hehe -->
-            <!-- <img class="checkout" src="./assets/icons/shopping-bag.svg" alt="Shopping bag"/> -->
-            <!-- </nav> -->
 
-            <!-- hamburger :DD -->
-
+            <!-- hamburger + shopping cart -->
             <div class="hamburger">
                 <img class="checkout" src="./assets/icons/shopping-bag.svg" alt="Shopping bag" />
             </div>
 
-
+            <div class="menu-container">
             <nav class="menu">
-                <img src="https://placekitten.com/200/300" alt="hamburger icon" class="hamburger-icon" />
+                <div id="cart" class="open">
+                    <h2>Shopping Cart:</h2>
+                    <ul id="cart-items"></ul>
+                    <p>Total: $<span id="cart-total">0</span></p>
+                    <button onclick="checkout()">Checkout</button>
+                </div>
 
+                <div id="cart-toggle" onclick="toggleCart()">Cart</div>
             </nav>
-
+            </div>
+            <!-- end hamburger shopping cart -->
         </nav>
-
-
-
-        <!-- end hamburger :DD -->
     </header>
 
     <div class="altBackground">
@@ -114,54 +111,71 @@
 
             <div class="products">
                 <div class="plant">
-                    <img src="./assets/p2.jpeg" alt="A Marigold plant"/>
-                    <button><img src="./assets/icons/cart.svg" alt="checkout"></button>
+                    <img src="./assets/p2.jpeg" alt="A Marigold plant" />
+                    <button onclick="addItem('American Marigold', 23.45)">
+                    <img src="./assets/icons/cart.svg" alt="checkout" />
+                    </button>
                     <h3>American Marigold</h3>
                     <p class="greenInfo">$23.45</p>
                 </div>
                 <div class="plant">
-                    <img src="./assets/p1.jpeg" alt="A Black Eyed Susan plant"/>
-                    <button><img src="./assets/icons/cart.svg" alt="checkout"></button>
+                    <img src="./assets/p1.jpeg" alt="A Black Eyed Susan plant" />
+                    <button onclick="addItem('Black Eyed Susan', 25.45)">
+                        <img src="./assets/icons/cart.svg" alt="checkout" />
+                    </button>
                     <h3>Black Eyed Susan</h3>
                     <p class="greenInfo">$25.45</p>
                 </div>
                 <div class="plant">
-                    <img src="./assets/p3.jpeg" alt="A Bleeding Heart plant"/>
-                    <button><img src="./assets/icons/cart.svg" alt="checkout"></button>
+                    <img src="./assets/p3.jpeg" alt="A Bleeding Heart plant" />
+                    <button onclick="addItem('Bleeding Heart', 30.45)">
+                    <img src="./assets/icons/cart.svg" alt="checkout" />
+                    </button>
                     <h3>Bleeding Heart</h3>
                     <p class="greenInfo">$30.45</p>
                 </div>
                 <div class="plant">
-                    <img src="./assets/p4.jpeg" alt="A Bloody Cranesbill plant"/>
-                    <button><img src="./assets/icons/cart.svg" alt="checkout"></button>
+                    <img src="./assets/p4.jpeg" alt="A Bloody Cranesbill plant" />
+                    <button onclick="addItem('Bloody Cranesbill', 45.00)">
+                        <img src="./assets/icons/cart.svg" alt="checkout" />
+                    </button>
                     <h3>Bloody Cranesbill</h3>
                     <p class="greenInfo">$45.00</p>
                 </div>
                 <div class="plant">
-                    <img src="./assets/p5.jpeg" alt="A Butterfly Weed plant"/>
-                    <button><img src="./assets/icons/cart.svg" alt="checkout"></button>
+                    <img src="./assets/p5.jpeg" alt="A Butterfly Weed plant" />
+                    <button onclick="addItem('Butterfly Weed', 50.45)">
+                        <img src="./assets/icons/cart.svg" alt="checkout" />
+                    </button>
                     <h3>Butterfly Weed</h3>
                     <p class="greenInfo">$50.45</p>
                 </div>
                 <div class="plant">
-                    <img src="./assets/p6.jpeg" alt="A Common Yarrow plant"/>
-                    <button><img src="./assets/icons/cart.svg" alt="checkout"></button>
+                    <img src="./assets/p6.jpeg" alt="A Common Yarrow plant" />
+                    <button onclick="addItem('Common Yarrow', 65.00)">
+                        <img src="./assets/icons/cart.svg" alt="checkout" />
+                    </button>
                     <h3>Common Yarrow</h3>
                     <p class="greenInfo">$65.00</p>
                 </div>
                 <div class="plant">
-                    <img src="./assets/p7.jpeg" alt="A Doublefile Viburnum plant"/>
-                    <button><img src="./assets/icons/cart.svg" alt="checkout"></button>
+                    <img src="./assets/p7.jpeg" alt="A Doublefile Viburnum plant" />
+                    <button onclick="addItem('Doublefile Viburnum', 67.45)">
+                        <img src="./assets/icons/cart.svg" alt="checkout" />
+                    </button>
                     <h3>Doublefile Viburnum</h3>
                     <p class="greenInfo">$67.45</p>
                 </div>
                 <div class="plant">
-                    <img src="./assets/p8.jpeg" alt="A Feather Reed Grass plant"/>
-                    <button><img src="./assets/icons/cart.svg" alt="checkout"></button>
+                    <img src="./assets/p8.jpeg" alt="A Feather Reed Grass plant" />
+                    <button onclick="addItem('Feather Reed Grass', 20.00)">
+                        <img src="./assets/icons/cart.svg" alt="checkout" />
+                    </button>
                     <h3>Feather Reed Grass</h3>
                     <p class="greenInfo">$20.00</p>
                 </div>
             </div>
+
         </section>
 
         <section class="collections thirds">
@@ -189,16 +203,20 @@
 
         <section id="blog" class="blog">
             <h2 class="line">Latest Posts</h2>
-            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
-                Latin literature.</p>
+            <p>
+                Contrary to popular belief, Lorem Ipsum is not simply random text. It
+                has roots in a piece of classical Latin literature.
+            </p>
 
             <div class="thirds">
                 <article>
                     <div>
                         <p class="greenInfo">By: Admin <time>24 April 2021</time></p>
                         <h3>Maecenas Laoreet Massa</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa, eaque dolorum pariatur
-                            corporis error voluptas.</p>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa,
+                            eaque dolorum pariatur corporis error voluptas.
+                        </p>
                     </div>
                     <img src="./assets/blog2.jpeg" alt="A person potting a plant cross-legged on the floor" />
                 </article>
@@ -206,8 +224,10 @@
                     <div>
                         <p class="greenInfo">By: Admin <time>24 April 2021</time></p>
                         <h3>Aenean Vulputate Lorem</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa, eaque dolorum pariatur
-                            corporis error voluptas.</p>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa,
+                            eaque dolorum pariatur corporis error voluptas.
+                        </p>
                     </div>
                     <img src="./assets/blog3.jpeg" alt="A person holding a tray of various different plants" />
                 </article>
@@ -215,8 +235,10 @@
                     <div>
                         <p class="greenInfo">By: Admin <time>24 April 2021</time></p>
                         <h3>The Design Is Very Human</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa, eaque dolorum pariatur
-                            corporis error voluptas.</p>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa,
+                            eaque dolorum pariatur corporis error voluptas.
+                        </p>
                     </div>
                     <img src="./assets/blog1.jpeg" alt="A spikey potted succulent framed by soft light" />
                 </article>
@@ -228,8 +250,10 @@
         <div class="wrapper">
             <div class="socials">
                 <h3><img src="./assets/logo.png" alt="Pronia logo" /></h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere culpa explicabo perspiciatis illum
-                    necessitatibus aut?</p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
+                    culpa explicabo perspiciatis illum necessitatibus aut?
+                </p>
                 <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="#"><i class="fa-brands fa-twitter"></i></a>
                 <a href="#"><i class="fa-brands fa-pinterest"></i></a>
@@ -273,11 +297,10 @@
             <p class="copyright">© 2023 Pronia</p>
         </div>
     </footer>
-    
+
     <!-- <script type="module" src="./scripts/pop-up.js">
     </script>  -->
-    <script type="module" src="./scripts/app.js">
-    </script>
+    <script type="module" src="./scripts/app.js"></script>
 </body>
 
 <script src="script.js"></script>
