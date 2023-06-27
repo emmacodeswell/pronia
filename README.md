@@ -1,9 +1,10 @@
 # ProniaProjectTwo
-The goal of this project is to implement team-based coding on our Project 1 and add JS functionality with Firebase integration.
-We added a cart counter, as well as a full in-cart checkout menu displaying which products the customer has purchased including their total price!
-A few extras were added as well such as a pop-out when you click on an item for more details.
+The goal of this project was to implement git-based collaboration, Firebase integration and JavaScript functionality to our Project 1.
+We added a cart item counter, as well as a full in-cart checkout menu displaying which products are in the cart, including their total price!
+Other features included were a quickview when an item image is clicked, as well as a notification when the product is added to the cart.
 
-Possible future additions might include filtering searching.
-
-Thanks for reading ✨
+Thanks for reading, you can find the live link below! ✨
 Jazz, Joey, & Emma!
+
+## Live Link
+[Pronia Project Two](https://649b4401eb8955008f322bec--tranquil-taffy-d1cae2.netlify.app/)
