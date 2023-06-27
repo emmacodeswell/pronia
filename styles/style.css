@@ -615,6 +615,22 @@ p.greenInfo time {
 }
 
 .hamburger {
+  position: relative;
+}
+
+#numItems {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5;
+  text-align: center;
+  border-radius: 50%;
+  top: -5px;
+  right: -5px;
+  background-color: #ABD373;
+}
+
+.hamburger {
   display: flex;
   flex-direction: column;
   cursor: pointer;
