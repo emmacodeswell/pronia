@@ -22,6 +22,7 @@ const updateDatabase = (event, value) => {
 
 // Get user cart data
 onValue(dbRef, (data) => {
+  
   if (data.exists()) {
     const payload = data.val().plants;
     const allProducts = Object.values(payload);
@@ -55,7 +56,7 @@ const displayPlants = (arrayOfPlants, node) => {
     button.id = plant.id;
     buttonImg.src = "./assets/icons/cart.svg";
 
-    // Listen for adding to cart
+    // // Listen for adding to cart
 
     button.addEventListener("click", function (event) {
       const plantId = event.target.parentNode.id;
@@ -66,6 +67,14 @@ const displayPlants = (arrayOfPlants, node) => {
         displayItem(plant.src, plant.name);
       }
     });
+
+    // Listen for adding to cart
+    button.addEventListener('click', function(event){
+      updateDatabase(event, plant.inCart+1)
+      console.log("clicked yes")
+
+      addToDiv(plant)
+    })
 
     h3.textContent = plant.name;
     img.alt = plant.alt;
@@ -205,7 +214,7 @@ function checkout() {
 
 //displayPlants + array and firebase stuff//
 
-//placeholder js//
+//haha lol array!!!! wow!!
 
 const plants = [
   {
@@ -282,7 +291,7 @@ const plants = [
   },
 ];
 
-//placeholder js end//
+//lol array lmao teehee//
 
 const containerNode = document.getElementById("plants-container");
 displayPlants(plants, containerNode);
@@ -290,4 +299,3 @@ displayPlants(plants, containerNode);
 const checkoutButton = document.getElementById("checkout-button");
 checkoutButton.addEventListener("click", checkout);
 
-//testing
