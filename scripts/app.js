@@ -65,6 +65,7 @@ const displayPlants = (arrayOfPlants, node) => {
       if (plant) {
         addItem(plant.name, plant.price);
         displayItem(plant.src, plant.name);
+        
       }
     });
 
@@ -91,6 +92,11 @@ const displayPlants = (arrayOfPlants, node) => {
 
 // S H O P P I N G  C A R T  U W U
 
+const saveCartData = (cart) => {
+  const cartRef = ref(database, "/cart");
+  update(cartRef, { items: cart });
+};
+
 let cart = [];
 let total = 0;
 
@@ -107,6 +113,7 @@ function addItem(name, price) {
     if (cart[i].name === name) {
       cart[i].quantity++;
       updateCart();
+      saveCartData(cart);
       return;
     }
   }
@@ -114,6 +121,7 @@ function addItem(name, price) {
   //if item isnt in the cart, add it!
   cart.push(item);
   updateCart();
+  saveCartData(cart);
 }
 
 function updateCart() {
@@ -195,6 +203,7 @@ function updateCart() {
         }
 
         updateCart();
+        saveCartData(cart);
         return;
       }
     }
@@ -208,10 +217,22 @@ function toggleCart() {
   cart.classList.toggle("open");
 }
 
+
+
 function checkout() {
   //save cart data (add soonish pls ty)
-}
+  saveCartData(cart);
+  console.log("Cart data saved.");
 
+  //annnnd to clear cart
+  clearCart();
+  function clearCart() {
+    cart = [];
+    updateCart();
+    saveCartData(cart); // Save empty cart data
+    console.log("Cart cleared.");
+}
+}
 //displayPlants + array and firebase stuff//
 
 //haha lol array!!!! wow!!
