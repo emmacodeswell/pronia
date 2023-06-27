@@ -6,10 +6,7 @@
 @use "./partials/pop-up";
 @use "./partials/cart";
 
-
-
-// look at this! its my hamburger something something + shopping cart
-
+// Styling hamburger menu
 
 .hamburger {
   display: flex;
@@ -34,19 +31,19 @@
   width: auto;
   height: auto;
   z-index: 2;
+
+  &.open {
+    display: block;
+    animation: fadeIn 0.3s forwards;
+  }
 }
 
-.menu-container {
+.menuContainer {
   position: sticky;
   top: 0 ;
   right: 300px;
   z-index: 1;
   
-}
-
-.menu.open {
-  display: block;
-  animation: fadeIn 0.3s forwards;
 }
 
 @keyframes fadeIn {
@@ -61,9 +58,7 @@
   }
 }
 
-//cart itemsss/
-
-.cart-item img {
+.cartItem img {
   width: 40px; 
   height: 40px; 
 }

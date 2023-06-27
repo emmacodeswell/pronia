@@ -11,6 +11,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function closingMenu() {
     menu.classList.remove("open")
-    console.log("menu closed")
   }
 });

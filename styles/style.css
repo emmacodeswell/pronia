@@ -654,17 +654,16 @@ p.greenInfo time {
   height: auto;
   z-index: 2;
 }
+.menu.open {
+  display: block;
+  animation: fadeIn 0.3s forwards;
+}
 
 .menuContainer {
   position: sticky;
   top: 0;
   right: 300px;
   z-index: 1;
-}
-
-.menu.open {
-  display: block;
-  animation: fadeIn 0.3s forwards;
 }
 
 @keyframes fadeIn {

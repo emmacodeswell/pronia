@@ -185,11 +185,6 @@ function updateCart() {
   document.getElementById('cartTotal').textContent = total.toFixed(2)
 }
 
-function toggleCart() {
-  let cart = document.getElementById('cart')
-  cart.classList.toggle('open');
-}
-
 function checkout() {
   const plantRef = ref(database, '/plants')
   const emptyCartData = cart.reduce((obj, item) => {
