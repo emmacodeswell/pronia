@@ -5,5 +5,5 @@ A few extras were added as well such as a pop-out when you click on an item for 
 
 Possible future additions might include filtering searching.
 
-Thanks for reading,
+Thanks for reading ✨
 Jazz, Joey, & Emma!
