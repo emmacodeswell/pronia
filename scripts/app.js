@@ -12,10 +12,12 @@ const dbRef = ref(database);
 
 // == GLOBAL SCOPE ==
 const products = document.querySelector(".products");
+let cart = [];
+let total = 0;
 
 // Was the 'add to cart' button clicked?
 const updateDatabase = (event, value) => {
-  const id = `p${event.currentTarget.id}`;
+  const id = `p${event.currentTarget.getAttribute('plantId')}`;
   const childRef = ref(database, `/plants/${id}`);
   update(childRef, { inCart: value });
 };
@@ -26,6 +28,15 @@ onValue(dbRef, (data) => {
   if (data.exists()) {
     const payload = data.val().plants;
     const allProducts = Object.values(payload);
+    cart = allProducts.filter(item => item.inCart).map(item => ({
+      name: item.name,
+      price: item.price,
+      quantity: item.inCart,
+      id: item.id,
+      src: item.src,
+      alt: item.alt
+    }))
+    updateCart()
 
     // products in cart / inCart === true
     const addToCart = allProducts.filter((plant) => {
@@ -42,6 +53,8 @@ onValue(dbRef, (data) => {
 
 // Display plant photos and make add to cart button
 const displayPlants = (arrayOfPlants, node) => {
+  if (!node) return
+
   node.innerHTML = "";
   arrayOfPlants.forEach((plant) => {
     const div = document.createElement("div");
@@ -53,28 +66,12 @@ const displayPlants = (arrayOfPlants, node) => {
     const button = document.createElement("button");
     const buttonImg = document.createElement("img");
 
-    button.id = plant.id;
+    button.setAttribute('plantId', plant.id);
     buttonImg.src = "./assets/icons/cart.svg";
-
-    // // Listen for adding to cart
-
-    button.addEventListener("click", function (event) {
-      const plantId = event.target.parentNode.id;
-      const plant = plants.find((item) => item.id === plantId);
-
-      if (plant) {
-        addItem(plant.name, plant.price);
-        displayItem(plant.src, plant.name);
-        
-      }
-    });
 
     // Listen for adding to cart
     button.addEventListener('click', function(event){
       updateDatabase(event, plant.inCart+1)
-      console.log("clicked yes")
-
-      addToDiv(plant)
     })
 
     h3.textContent = plant.name;
@@ -92,38 +89,6 @@ const displayPlants = (arrayOfPlants, node) => {
 
 // S H O P P I N G  C A R T  U W U
 
-const saveCartData = (cart) => {
-  const cartRef = ref(database, "/cart");
-  update(cartRef, { items: cart });
-};
-
-let cart = [];
-let total = 0;
-
-function addItem(name, price) {
-  let item = {
-    name: name,
-    price: price,
-    quantity: 1,
-  };
-
-  //check if item is already in cart
-
-  for (let i = 0; i < cart.length; i++) {
-    if (cart[i].name === name) {
-      cart[i].quantity++;
-      updateCart();
-      saveCartData(cart);
-      return;
-    }
-  }
-
-  //if item isnt in the cart, add it!
-  cart.push(item);
-  updateCart();
-  saveCartData(cart);
-}
-
 function updateCart() {
   let cartItems = document.getElementById("cart-items");
   cartItems.innerHTML = "";
@@ -140,16 +105,17 @@ function updateCart() {
     li.classList.add("cart-item");
 
     let img = document.createElement("img");
-    img.src = plants.find((plant) => plant.name === item.name).src;
+    img.src = item.src
     img.alt = item.name;
     li.appendChild(img);
 
     let span = document.createElement("span");
-    span.textContent = `${item.name} - $${item.price} x ${item.quantity} = $${itemTotal}`;
+    span.textContent = `${item.name} - $${item.price.toFixed(2)} x ${item.quantity} = $${itemTotal.toFixed(2)}`;
 
     // subtract button
     let subtractBtn = document.createElement("button");
     subtractBtn.classList.add("subtract-btn");
+    subtractBtn.setAttribute('plantId', item.id)
 
     // subtract button icon
     let subtractBtnImg = document.createElement("img");
@@ -163,12 +129,13 @@ function updateCart() {
 
     subtractBtn.addEventListener("click", function (event) {
       event.stopPropagation();
-      subtractItem(item.name);
+      updateDatabase(event, item.quantity-1);
     });
 
     // addition button
     let additionBtn = document.createElement("button");
     additionBtn.classList.add("addition-btn");
+    additionBtn.setAttribute('plantId', item.id)
 
     // addition button icon
     let additionBtnImg = document.createElement("img");
@@ -183,33 +150,16 @@ function updateCart() {
 
     additionBtn.addEventListener("click", function (event) {
       event.stopPropagation();
-      addItem(item.name, item.price);
+      updateDatabase(event, item.quantity+1)
     });
 
     li.appendChild(span);
     li.appendChild(subtractBtn);
     li.appendChild(additionBtn);
     cartItems.appendChild(li);
-
   }
 
-  function subtractItem(name) {
-    for (let i = 0; i < cart.length; i++) {
-      if (cart[i].name === name) {
-        cart[i].quantity--;
-
-        if (cart[i].quantity === 0) {
-          cart.splice(i, 1);
-        }
-
-        updateCart();
-        saveCartData(cart);
-        return;
-      }
-    }
-  }
-
-  document.getElementById("cart-total").textContent = total;
+  document.getElementById("cart-total").textContent = total.toFixed(2);
 }
 
 function toggleCart() {
@@ -217,106 +167,14 @@ function toggleCart() {
   cart.classList.toggle("open");
 }
 
-
-
 function checkout() {
-  //save cart data (add soonish pls ty)
-  saveCartData(cart);
-  console.log("Cart data saved.");
-
-  //annnnd to clear cart
-  clearCart();
-  function clearCart() {
-    cart = [];
-    updateCart();
-    saveCartData(cart); // Save empty cart data
-    console.log("Cart cleared.");
+  const plantRef = ref(database, "/plants")
+  const emptyCartData = cart.reduce((obj, item) => {
+    obj[`p${item.id}/inCart`] = 0
+    return obj
+  }, {})
+  update(plantRef, emptyCartData)
 }
-}
-//displayPlants + array and firebase stuff//
-
-//haha lol array!!!! wow!!
-
-const plants = [
-  {
-    name: "American Marigold",
-    id: "1",
-    category: "featured",
-    price: 23.45,
-    src: "./assets/p2.jpeg",
-    alt: "A Marigold plant",
-    inCart: 0,
-  },
-  {
-    name: "Black Eyed Susan",
-    id: "2",
-    category: "featured",
-    price: 25.45,
-    src: "./assets/p1.jpeg",
-    alt: "A Black Eyed Susan plant",
-    inCart: 0,
-  },
-  {
-    name: "Bleeding Heart",
-    id: "3",
-    category: "featured",
-    price: 30.45,
-    src: "./assets/p3.jpeg",
-    alt: "A Bleeding Heart plant",
-    inCart: 0,
-  },
-  {
-    name: "Bloody Cranesbill",
-    id: "4",
-    category: "bestseller",
-    price: 45.0,
-    src: "./assets/p4.jpeg",
-    alt: "A Bloody Cranesbill plant",
-    inCart: 0,
-  },
-  {
-    name: "Butterfly Weed",
-    id: "5",
-    category: "bestseller",
-    price: 50.45,
-    src: "./assets/p5.jpeg",
-    alt: "A Butterfly Weed plant",
-    inCart: 0,
-  },
-  {
-    name: "Common Yarrow",
-    id: "6",
-    category: "bestseller",
-    price: 65.0,
-    src: "./assets/p6.jpeg",
-    alt: "A Common Yarrow ",
-    inCart: 0,
-  },
-  {
-    name: "Doublefile Viburnum",
-    id: "7",
-    category: "latest",
-    price: 67.45,
-    src: "./assets/p7.jpeg",
-    alt: "A Doublefile Viburnum plant",
-    inCart: 0,
-  },
-  {
-    name: "Feather Reed Grass",
-    id: "8",
-    category: "latest",
-    price: 20.0,
-    src: "./assets/p8.jpeg",
-    alt: "A Feather Reed Grass plant",
-    inCart: 0,
-  },
-];
-
-//lol array lmao teehee//
-
-const containerNode = document.getElementById("plants-container");
-displayPlants(plants, containerNode);
 
 const checkoutButton = document.getElementById("checkout-button");
 checkoutButton.addEventListener("click", checkout);
-
