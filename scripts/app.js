@@ -94,7 +94,7 @@ const displayPlants = (arrayOfPlants, node) => {
     // Listen for adding to cart
     button.addEventListener('click', function(event){
       updateDatabase(event, plant.inCart+1)
-      displayNotification(`.${uniqueClass}`, `Product successfully added to your cart.`)
+      displayNotification(`.${uniqueClass}`, `Product successfully added to cart.`)
     })
 
     h3.textContent = plant.name
