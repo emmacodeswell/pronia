@@ -43,18 +43,16 @@
                 <img class="checkout" src="./assets/icons/shopping-bag.svg" alt="Shopping bag" />
             </div>
 
-            <div class="menu-container">
+            <div class="menuContainer">
                 <nav class="menu">
                     <div id="cart" class="open">
                         <button id="closeMenu"><i class="fa-solid fa-xmark fa-beat" style="color: #b3d27e;"></i></button>
                         <h3><button id="closeMenu"></button>                  Shopping Cart:</h3>
-                        <ul id="cart-items"></ul>
-                        <p class="greenInfo">⠀Total: $<span id="cart-total">0</span></p>
-                        <button class="cta" id="checkout-button"><i class="fa-solid fa-cart-shopping fa-fade" style="color: #feffff;"></i> Checkout</button>
+                        <ul id="cartItem"></ul>
+                        <p class="greenInfo">Total: $<span id="cartTotal">0</span></p>
+                        <button class="cta" id="checkoutButton"><i class="fa-solid fa-cart-shopping fa-fade" style="color: #feffff;"></i> Checkout</button>
                     </div>
-
-
-                    <div id="cart-toggle" onclick="toggleCart()"></div>
+                    <div onclick="toggleCart()"></div>
                 </nav>
             </div>
             <!-- end hamburger shopping cart -->
@@ -239,6 +237,6 @@
     <script type="module" src="./scripts/pop-up.js"></script> 
 </body>
 
-<script src="shoppingCart.js"></script>
+<script src="scripts/shoppingCart.js"></script>
 
 </html>

@@ -655,7 +655,7 @@ p.greenInfo time {
   z-index: 2;
 }
 
-.menu-container {
+.menuContainer {
   position: sticky;
   top: 0;
   right: 300px;
@@ -677,7 +677,7 @@ p.greenInfo time {
     visibility: visible;
   }
 }
-.cart-item img {
+.cartItem img {
   width: 40px;
   height: 40px;
 }
