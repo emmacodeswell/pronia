@@ -7,4 +7,4 @@ Thanks for reading, you can find the live link below! ✨
 Emma, Jazz and Joey!
 
 ## Live Link
-[Pronia Storefront](https://649b4401eb8955008f322bec--tranquil-taffy-d1cae2.netlify.app/)
+[Pronia Storefront](https://tranquil-taffy-d1cae2.netlify.app/)
